@@ -651,13 +651,174 @@ $ git commit -a -m 'Create new footer [issue 53]'
 \end{figure}
 \end{frame}
 
-\section{Workflows}
-\section{Github}
-\section{Ressources}
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+There is an issue with your code in the \texttt{master} branch. You need to
+create a hotfix for this. So we switch back to the master branch.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git checkout master
+Switched to branch 'master'
+\end{minted}
+And now we create a \texttt{hotfix} branch. And create a commit to fix the broken
+email address.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git checkout -b hotfix master
+Switched to a new branch 'hotfix'
+$ vim index.html
+$ git commit -a -m 'Fix broken email address'
+[hotfix 1fb7853] Fix broken email address
+ 1 file changed, 2 insertions(+)
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{basic-branching-4}
+    \caption{
+        Hotfix branch based on \texttt{master}\footnote{
+            Pro Git: 3.2 Git Branching - Basic Branching and Merging
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+Now we need to merge the \texttt{hotfix} branch into our \texttt{master} branch.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git checkout master
+$ git merge hotfix
+Updating f42c576..3a0874c
+Fast-forward
+ index.html | 2 ++
+ 1 file changed, 2 insertions(+)
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{basic-branching-5}
+    \caption{
+        \texttt{master} is \emph{fast-forwarded} to \texttt{hotfix}\footnote{
+            Pro Git: 3.2 Git Branching - Basic Branching and Merging
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+Delete the \verb|hotfix| branch.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git branch -d hotfix
+Deleted branch hotfix (3a0874c).
+\end{minted}
+Switch back to the \verb|iss53| branch to continue your work.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git checkout iss53
+Switched to branch "iss53"
+$ vim index.html
+$ git commit -a -m 'Finish the new footer [issue 53]'
+[iss53 ad82d7a] Finish the new footer [issue 53]
+1 file changed, 1 insertion(+)
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{basic-branching-6}
+    \caption{
+        Work continues on \texttt{iss53}\footnote{
+            Pro Git: 3.2 Git Branching - Basic Branching and Merging
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+The feature on the \verb|iss53| is done and can be merged into the master branch.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git checkout master
+Switched to branch 'master'
+$ git merge iss53
+Merge made by the 'recursive' strategy.
+index.html |    1 +
+1 file changed, 1 insertion(+)
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{basic-merging-1}
+    \caption{
+         Three snapshots used in a typical merge\footnote{
+            Pro Git: 3.2 Git Branching - Basic Branching and Merging
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{basic-merging-2}
+    \caption{
+         A merge commit\footnote{
+            Pro Git: 3.2 Git Branching - Basic Branching and Merging
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+\begin{block}{Merge Conflicts}
+When merging two branches which made changes to the same code it is likley you will get a merge conflict.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git merge iss53
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+    both modified:      index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+\end{minted}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+\begin{block}{Summary}
+\begin{itemize}
+    \item Creating branches with \verb|git branch| or \verb|git checkout -b|
+    \item Switching between branches with \verb|git checkout|
+    \item Merging branches with \verb|git merge|
+    \item The difference between a merge commit and a fast-forward merge
+    \item Deleting branches with \verb|git branch -d|
+\end{itemize}
+\end{block}
+\end{frame}
+
+\newsection{Workflows}
+\newsection{Github}
+\newsection{Ressources}
 \begin{frame}{Ressources}
 \begin{itemize}
     \item Pro Git book: \url{https://git-scm.com/book/en/v2}
     \item Interactive git branching tutorial: \url{https://learngitbranching.js.org/}
+    \item The slide sources: \url{https://github.com/iluminat23/git-training}
 \end{itemize}
 \end{frame}
 
