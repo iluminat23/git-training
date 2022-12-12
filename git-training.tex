@@ -19,6 +19,9 @@
 
 \renewcommand{\footnotesize}{\tiny}
 
+\newcommand{\sectiontitle}{}
+\newcommand{\newsection}[1]{\renewcommand{\sectiontitle}{#1}\section{#1}}
+
 % Image Logo
 \logo{\includegraphics[width=2.5cm]{kunbus-logo.png}} 
 
@@ -63,7 +66,10 @@
     \centering
     \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{deltas}
     \caption{
-        Pro Git: 1.3 Getting Started - What is Git?\footnote{\url{https://git-scm.com/book/en/v2/Getting-Started-What-is-Git\%3F}}
+        Storing data as changes to a base version of each file\footnote{
+            Pro Git: 1.3 Getting Started - What is Git?
+            (\url{https://git-scm.com/book/en/v2/Getting-Started-What-is-Git\%3F})
+        }
     }
 \end{figure}
 \end{frame}
@@ -72,8 +78,11 @@
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{snapshots}
-    \caption{
-        Pro Git: 1.3 Getting Started - What is Git?\footnote{\url{https://git-scm.com/book/en/v2/Getting-Started-What-is-Git\%3F}}
+    \caption {
+        Storing data as snapshots of the project over time\footnote{
+            Pro Git: 1.3 Getting Started - What is Git?
+            (\url{https://git-scm.com/book/en/v2/Getting-Started-What-is-Git\%3F})
+        }
     }
 \end{figure}
 \end{frame}
@@ -97,7 +106,10 @@ $ ls -sh kunbus-logo.png
     \centering
     \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{data-model-2}
     \caption{
-        Pro Git: 10.2 Git Internals - Git Objects\footnote{\url{https://git-scm.com/book/en/v2/Git-Internals-Git-Objects}}
+        The content structure of your current Git data\footnote{
+            Pro Git: 10.2 Git Internals - Git Objects
+            (\url{https://git-scm.com/book/en/v2/Git-Internals-Git-Objects})
+        }
     }
 \end{figure}
 \end{frame}
@@ -107,15 +119,18 @@ $ ls -sh kunbus-logo.png
     \centering
     \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{data-model-3}
     \caption{
-        Pro Git: 10.2 Git Internals - Git Objects\footnote{\url{https://git-scm.com/book/en/v2/Git-Internals-Git-Objects}}
+        All the reachable objects in your Git directory\footnote{
+            Pro Git: 10.2 Git Internals - Git Objects
+            (\url{https://git-scm.com/book/en/v2/Git-Internals-Git-Objects})
+        }
     }
 \end{figure}
 \end{frame}
 
-\section{The Basics}
-\begin{frame}[fragile]{Getting a Git Repository}{Git Basics}
+\newsection{Git Basics}
+\begin{frame}[fragile]{Getting a Git Repository}{\sectiontitle}
 \begin{itemize}
-    \item Create an directory
+    \item Create a directory
     \item Call \verb|git init| inside the directory
 \end{itemize}
 \begin{minted}[bgcolor=LightGray,fontsize=\small]{text}
@@ -130,7 +145,7 @@ Initialized empty Git repository in /home/user/my_project/.git/
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Getting a Git Repository}{Git Basics}
+\begin{frame}[fragile]{Getting a Git Repository}{\sectiontitle}
 \begin{itemize}
     \item With \verb|git clone| we can get a remote repository
 \end{itemize}
@@ -151,19 +166,18 @@ Resolving deltas: 100% (84532/84532), done.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Recording Changes to the Repository}{Git Basics}
-\begin{itemize}
-    \item Files in the working tree can be in four states:
+\begin{frame}{Recording Changes to the Repository}{\sectiontitle}
+\begin{block}{A file in your working tree can be in one (or more) of these for states}
     \begin{itemize}
         \item unmodified
         \item modified
         \item untracked
         \item staged
     \end{itemize}
-\end{itemize}
+\end{block}
 \end{frame}
 
-\begin{frame}{Recording Changes to the Repository}{Git Basics}
+\begin{frame}{Recording Changes to the Repository}{\sectiontitle}
 \begin{block}{unmodified}
     Files which are under control of git. All changes have been recorded to the
     history. No additional changes have been made to the files.
@@ -175,31 +189,34 @@ Resolving deltas: 100% (84532/84532), done.
 \end{frame}
 
 
-\begin{frame}{Recording Changes to the Repository}{Git Basics}
+\begin{frame}{Recording Changes to the Repository}{\sectiontitle}
 \begin{block}{untracked}
-	Files which are in the working tree but are not under the control of git.
-	They don't exist in the history. This can be new files or build artifacts
-	which should not be included in the git repository.
+    Files which are in the working tree but are not under the control of git.
+    They don't exist in the history. This can be new files or build artifacts
+    which should not be included in the git repository.
 \end{block}
 \begin{block}{staged}
-	Files which are marked to be recorded to the history. Changes to files files
-	in modified stage need to be staged before they can be recorded to the
-	history. Also untracked files need to be staged before the can be recorded to
-	the history.
+    Files which are marked to be recorded to the history. Changes to files files
+    in modified stage need to be staged before they can be recorded to the
+    history. Also untracked files need to be staged before the can be recorded to
+    the history.
 \end{block}
 \end{frame}
 
-\begin{frame}{Recording Changes to the Repository}{Git Basics}
+\begin{frame}{Recording Changes to the Repository}{\sectiontitle}
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{lifecycle}
     \caption{
-        Pro Git: 12.2 Git Basics - Recording Changes to the Repository\footnote{\url{https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository}}
+        The lifecycle of the status of your files\footnote{
+            Pro Git: 2.2 Git Basics - Recording Changes to the Repository
+            (\url{https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository})
+        }
     }
 \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{Recording Changes to the Repository}{Git Basics}
+\begin{frame}[fragile]{Recording Changes to the Repository}{\sectiontitle}
 \begin{block}{Example: \ttfamily git add}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize,breaklines]{text}
 my_project$ echo "# My Project" > README.md
@@ -210,14 +227,14 @@ No commits yet
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	README.md
+    README.md
 
 nothing added to commit but untracked files present (use "git add" to track)
 \end{minted}
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Recording Changes to the Repository}{Git Basics}
+\begin{frame}[fragile]{Recording Changes to the Repository}{\sectiontitle}
 \begin{block}{Example: \ttfamily git add}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ git add README.md
@@ -228,12 +245,12 @@ No commits yet
 
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
-	new file:   README.md
+    new file:   README.md
 \end{minted}
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Recording Changes to the Repository}{Git Basics}
+\begin{frame}[fragile]{Recording Changes to the Repository}{\sectiontitle}
 \begin{block}{Example: \ttfamily git commit}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ git commit
@@ -248,7 +265,7 @@ nothing to commit, working tree clean
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Recording Changes to the Repository}{Git Basics}
+\begin{frame}[fragile]{Recording Changes to the Repository}{\sectiontitle}
 \begin{block}{Example: Change file and commit changes}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ echo -e "\nCopyright 2022 KUNBUS GmbH" >> README.md
@@ -257,7 +274,7 @@ On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   README.md
+    modified:   README.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
 my_project$ git add README.md
@@ -265,7 +282,7 @@ my_project$ git status
 On branch master
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
-	modified:   README.md
+    modified:   README.md
 my_project$ git commit
 >EDITOR OPENS<
 [master c16cceb] Add copyright
@@ -274,18 +291,18 @@ my_project$ git commit
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Recording Changes to the Repository}{Git Basics}
+\begin{frame}[fragile]{Recording Changes to the Repository}{\sectiontitle}
 \begin{block}{summary}
 \begin{itemize}
-	\item Add new files with \verb|git add| to the staging area
-	\item Add changes with \verb|git add| to the staging area
-	\item Use \verb|git status| to check the state of your files and working tree
-	\item Use \verb|git commit| to record changes from the staging area to the history
+    \item Add new files with \verb|git add| to the staging area
+    \item Add changes with \verb|git add| to the staging area
+    \item Use \verb|git status| to check the state of your files and working tree
+    \item Use \verb|git commit| to record changes from the staging area to the history
 \end{itemize}
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Viewing the Commit History}{Git Basics}
+\begin{frame}[fragile]{Viewing the Commit History}{\sectiontitle}
 \begin{block}{Example: \ttfamily git log}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ git log
@@ -307,7 +324,7 @@ Date:   Wed Dec 7 13:15:11 2022 +0100
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Viewing the Commit History}{Git Basics}
+\begin{frame}[fragile]{Viewing the Commit History}{\sectiontitle}
 \begin{block}{Example: \ttfamily git log --pretty=fuller}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ git log --pretty=fuller 
@@ -332,7 +349,7 @@ CommitDate: Thu Dec 8 14:00:29 2022 +0100
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Viewing the Commit History}{Git Basics}
+\begin{frame}[fragile]{Viewing the Commit History}{\sectiontitle}
 \begin{block}{Example: \ttfamily git show}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
 my_project$ git show 19450627f83f4e51ad42ece86d9d2a5279bc2c23
@@ -355,17 +372,17 @@ index 0000000..a2beefd
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Viewing the Commit History}{Git Basics}
+\begin{frame}[fragile]{Viewing the Commit History}{\sectiontitle}
 \begin{block}{summary}
 \begin{itemize}
-	\item List the history with git \verb|git log|
-	\item The difference between author and committer 
-	\item Show any commit with form you history or even repo with \verb|git show|
+    \item List the history with git \verb|git log|
+    \item The difference between author and committer 
+    \item Inspect any commit form you history (or git repo) with \verb|git show|
 \end{itemize}
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Undoing Things}{Git Basics}
+\begin{frame}[fragile]{Undoing Things}{\sectiontitle}
 \begin{block}{Example: Change your last commit: \texttt{git commit --amend} {\small(1)}}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
 my_project$ vim README.md
@@ -384,14 +401,14 @@ On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   README.md
+    modified:   README.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
 \end{minted}
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Undoing Things}{Git Basics}
+\begin{frame}[fragile]{Undoing Things}{\sectiontitle}
 \begin{block}{Example: Change your last commit: \texttt{git commit --amend} {\small(2)}}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
 my_project$ git add README.md
@@ -399,7 +416,7 @@ my_project$ git status
 On branch master
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
-	modified:   README.md
+    modified:   README.md
 
 my_project$ git commit --amend
 [master 0e59905] Add KUNBUS copyright notice
@@ -409,7 +426,7 @@ my_project$ git commit --amend
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Undoing Things}{Git Basics}
+\begin{frame}[fragile]{Undoing Things}{\sectiontitle}
 \begin{block}{Example: Change your last commit: \texttt{git commit --amend} {\small(3)}}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
 my_project$ git show HEAD
@@ -431,7 +448,7 @@ index a2beefd..272997d 100644
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Undoing Things}{Git Basics}
+\begin{frame}[fragile]{Undoing Things}{\sectiontitle}
 \begin{block}{Example: Change your last commit: \texttt{git commit --amend} {\small(4)}}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ git log
@@ -452,23 +469,191 @@ Date:   Wed Dec 7 13:15:11 2022 +0100
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Undoing Things}{Git Basics}
+\begin{frame}[fragile]{Undoing Things}{\sectiontitle}
 \begin{block}{summary}
 \begin{itemize}
-	\item Change the last commit with \verb|git commit --amend|
-	\item The key word \verb|HEAD| references the current (last) commit in the work tree
+    \item Change the last commit with \verb|git commit --amend|
+    \item The key word \verb|HEAD| references the current (last) commit in the work tree
 \end{itemize}
 \end{block}
 \end{frame}
 
-\section{Not so Basic}
+
+\newsection{Git Branching}
+\begin{frame}{Branches in a Nutshell}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{commit-and-tree}
+    \caption{
+        A Commit and its tree\footnote{
+            Pro Git: 3.1 Git Branching - Branches in a Nutshell
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}{Branches in a Nutshell}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{commits-and-parents}
+    \caption{
+        Commits and their parents\footnote{
+            Pro Git: 3.1 Git Branching - Branches in a Nutshell
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Branches in a Nutshell}{\sectiontitle}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git branch testing
+\end{minted}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{two-branches}
+    \caption{
+        Two branches pointing into the same series of commits\footnote{
+            Pro Git: 3.1 Git Branching - Branches in a Nutshell
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}{Branches in a Nutshell}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{head-to-master}
+    \caption{
+        HEAD pointing to a branch\footnote{
+            Pro Git: 3.1 Git Branching - Branches in a Nutshell
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Branches in a Nutshell}{\sectiontitle}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git checkout testing
+\end{minted}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{head-to-testing}
+    \caption{
+        HEAD points to the current branch\footnote{
+            Pro Git: 3.1 Git Branching - Branches in a Nutshell
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Branches in a Nutshell}{\sectiontitle}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ vim test.rb
+$ git commit -a -m 'made a change'
+\end{minted}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{advance-testing}
+    \caption{
+        The HEAD branch moves forward when a commit is made\footnote{
+            Pro Git: 3.1 Git Branching - Branches in a Nutshell
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Branches in a Nutshell}{\sectiontitle}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git checkout master
+\end{minted}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{checkout-master}
+    \caption{
+        HEAD moves when you checkout\footnote{
+            Pro Git: 3.1 Git Branching - Branches in a Nutshell
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Branches in a Nutshell}{\sectiontitle}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ vim test.rb
+$ git commit -a -m 'made other changes'
+\end{minted}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{advance-master}
+    \caption{
+        Divergent history\footnote{
+            Pro Git: 3.1 Git Branching - Branches in a Nutshell
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}{Basic Branching and Merging}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{basic-branching-1}
+    \caption{
+        A simple commit history\footnote{
+            Pro Git: 3.2 Git Branching - Basic Branching and Merging
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ git checkout -b iss53
+\end{minted}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{basic-branching-2}
+    \caption{
+        Creating a new branch pointer\footnote{
+            Pro Git: 3.2 Git Branching - Basic Branching and Merging
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
+$ vim index.html
+$ git commit -a -m 'Create new footer [issue 53]'
+\end{minted}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{basic-branching-3}
+    \caption{
+        The \texttt{iss53} branch has moved forward with your work\footnote{
+            Pro Git: 3.2 Git Branching - Basic Branching and Merging
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging})
+        }
+    }
+\end{figure}
+\end{frame}
+
 \section{Workflows}
 \section{Github}
 \section{Ressources}
 \begin{frame}{Ressources}
 \begin{itemize}
-	\item Pro Git book: \url{https://git-scm.com/book/en/v2}
-	\item Interactive git branching tutorial: \url{https://learngitbranching.js.org/}
+    \item Pro Git book: \url{https://git-scm.com/book/en/v2}
+    \item Interactive git branching tutorial: \url{https://learngitbranching.js.org/}
 \end{itemize}
 \end{frame}
 
