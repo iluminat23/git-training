@@ -132,6 +132,18 @@ $ ls -sh kunbus-logo.png
 \end{frame}
 
 \newsection{Git Basics}
+\begin{frame}[fragile]{First-Time Git Setup}{\sectiontitle}
+You need to configure your identity. If you ignore this step your commits will
+have a wrong author. And I will not accept anything from you in my repository
+or any company repository.
+\begin{minted}[bgcolor=LightGray,fontsize=\small]{text}
+$ git config --global user.name "John Doe"
+$ git config --global user.email j.doe@kunbus.com
+\end{minted}
+You can also configure your preferred editor and customize git behavior:
+\url{https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup}
+\end{frame}
+
 \begin{frame}[fragile]{Getting a Git Repository}{\sectiontitle}
 \begin{itemize}
     \item Create a directory
