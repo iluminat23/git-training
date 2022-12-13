@@ -185,31 +185,31 @@ Resolving deltas: 100% (84532/84532), done.
 \begin{frame}{Recording Changes to the Repository}{\sectiontitle}
 \begin{block}{A file in your working tree can be in one (or more) of these for states}
     \begin{itemize}
+        \item untracked
         \item unmodified
         \item modified
-        \item untracked
         \item staged
     \end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}{Recording Changes to the Repository}{\sectiontitle}
+\begin{block}{untracked}
+    Files which are in the working tree but are not under the control of git.
+    They don't exist in the history. This can be new files or build artifacts
+    which should not be included in the git repository.
+\end{block}
 \begin{block}{unmodified}
     Files which are under control of git. All changes have been recorded to the
     history. No additional changes have been made to the files.
-\end{block}
-\begin{block}{modified}
-    Files which are under control of git. Files that have been changed since
-    the last time the changes to the file have been recorded to the history.
 \end{block}
 \end{frame}
 
 
 \begin{frame}{Recording Changes to the Repository}{\sectiontitle}
-\begin{block}{untracked}
-    Files which are in the working tree but are not under the control of git.
-    They don't exist in the history. This can be new files or build artifacts
-    which should not be included in the git repository.
+\begin{block}{modified}
+    Files which are under control of git. Files that have been changed since
+    the last time the changes to the file have been recorded to the history.
 \end{block}
 \begin{block}{staged}
     Files which are marked to be recorded to the history. Changes to files files
@@ -274,9 +274,11 @@ my_project$ git commit
 [master (root-commit) 1945062] Add initial REAMDE.md
  1 file changed, 1 insertion(+)
  create mode 100644 README.md
-my_project[master]$ git status 
+my_project$ git status
 On branch master
 nothing to commit, working tree clean
+my_project$ ls
+README.md
 \end{minted}
 \end{block}
 \end{frame}
@@ -315,6 +317,18 @@ my_project$ git commit
     \item Use \verb|git status| to check the state of your files and working tree
     \item Use \verb|git commit| to record changes from the staging area to the history
 \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Recording Changes to the Repository}{\sectiontitle}
+\begin{block}{Exercise}
+\begin{enumerate}
+    \item Create a local git repository
+    \item Create and add at least two files
+    \item Commit your changes to the repository
+    \item Make changes to one or more files
+    \item Add and commit the changes
+\end{enumerate}
 \end{block}
 \end{frame}
 
@@ -391,7 +405,7 @@ index 0000000..a2beefd
 \begin{frame}[fragile]{Viewing the Commit History}{\sectiontitle}
 \begin{block}{Summary}
 \begin{itemize}
-    \item List the history with git \verb|git log|
+    \item List the history with \verb|git log|
     \item The difference between author and committer 
     \item Inspect any commit form you history (or git repo) with \verb|git show|
 \end{itemize}
@@ -435,6 +449,7 @@ Changes to be committed:
     modified:   README.md
 
 my_project$ git commit --amend
+>EDITOR OPENS<
 [master 0e59905] Add KUNBUS copyright notice
  Date: Thu Dec 8 13:15:00 2022 +0100
  1 file changed, 2 insertions(+)
@@ -494,6 +509,16 @@ Date:   Wed Dec 7 13:15:11 2022 +0100
 \end{block}
 \end{frame}
 
+\begin{frame}[fragile]{Undoing Things}{\sectiontitle}
+\begin{block}{Exercise}
+Use your repository from the last exercise.
+\begin{enumerate}
+    \item List the history of you repository
+    \item Inspect the first/initial commit
+    \item Change the last commit of your history
+\end{enumerate}
+\end{block}
+\end{frame}
 
 \newsection{Git Branching}
 \begin{frame}{Branches in a Nutshell}{\sectiontitle}
@@ -790,7 +815,7 @@ index.html |    1 +
 
 \begin{frame}[fragile]{Basic Branching and Merging}{\sectiontitle}
 \begin{block}{Merge Conflicts}
-When merging two branches which made changes to the same code it is likley you will get a merge conflict.
+When merging two branches which made changes to the same code it is likely you will get a merge conflict.
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
 $ git merge iss53
 Auto-merging index.html
@@ -823,7 +848,137 @@ no changes added to commit (use "git add" and/or "git commit -a")
 \end{block}
 \end{frame}
 
+\newsection{Working with Remotes}
+\begin{frame}{What is a remote (repository)?}{\sectiontitle}
+\begin{itemize}
+    \item A remote repository is separate repository
+    \item It is most likely accessed over the network (e.g. ssh, https, \ldots)
+    \item It is configured in your local repository as \emph{remote}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{What is a remote (repository)?}{\sectiontitle}
+\begin{block}{\texttt{git clone}}
+The simplest and most common way to configure a remote is to \emph{clone} a
+remote git repository. We have already discussed this.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
+$ git clone https://github.com/schacon/ticgit
+Cloning into 'ticgit'...
+remote: Reusing existing pack: 1857, done.
+remote: Total 1857 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (1857/1857), 374.35 KiB | 268.00 KiB/s, done.
+Resolving deltas: 100% (772/772), done.
+Checking connectivity... done.
+$ cd ticgit
+$ git remote -v
+origin	https://github.com/schacon/ticgit (fetch)
+origin	https://github.com/schacon/ticgit (push)
+\end{minted}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{What is a remote (repository)?}{\sectiontitle}
+\begin{block}{What's up with this \texttt{origin}?}
+\begin{itemize}
+    \item When you clone a repo the remote (from where you cloned it) will be called origin
+    \item You can rename it as you like
+\end{itemize}
+\end{block}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
+$ git remote rename origin schacon
+$ git remote -v
+schacon	https://github.com/schacon/ticgit (fetch)
+schacon	https://github.com/schacon/ticgit (push)
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{Multiple Remotes}{\sectiontitle}
+\begin{block}{How to add a remote?}
+You can have as many remotes as you like/need. Use \verb|git remote add| to
+add a new remote:
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
+$ git remote add ilu git@github.com:iluminat23/ticgit.git
+$ git remote -v
+ilu	git@github.com:iluminat23/ticgit.git (fetch)
+ilu	git@github.com:iluminat23/ticgit.git (push)
+schacon	https://github.com/schacon/ticgit (fetch)
+schacon	https://github.com/schacon/ticgit (push)
+\end{minted}
+\begin{itemize}
+    \item The first remote (\verb|ilu|) is using ssh
+    \item The second remote (\verb|schacon|) is using https
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Multiple Remotes}{\sectiontitle}
+\begin{block}{How to add a remote?}
+When you create a local git repo it has no remotes. But you can add a remote any time.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
+$ mkdir empty_repo
+$ cd empty_repo/
+$ git init
+Initialized empty Git repository in /tmp/empty_repo/.git/
+$ git remote -v
+$ git remote add ilu git@github.com:iluminat23/example_repo.git
+$ git remote -v
+ilu	git@github.com:iluminat23/example_repo.git (fetch)
+ilu	git@github.com:iluminat23/example_repo.git (push)
+\end{minted}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Multiple Remotes}{\sectiontitle}
+\begin{block}{How to synchronize the local repo?}
+To get the (newest) data from a remote use \verb|git fetch|.
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
+$ mkdir ticgit && cd ticgit/
+$ git init
+$ git remote add ilu git@github.com:iluminat23/ticgit.git
+$ git fetch ilu
+remote: Enumerating objects: 1827, done.
+remote: Total 1827 (delta 0), reused 0 (delta 0), pack-reused 1827
+Receiving objects: 100% (1827/1827), 328.07 KiB | 1.09 MiB/s, done.
+Resolving deltas: 100% (828/828), done.
+From github.com:iluminat23/ticgit
+ * [new branch]      master     -> ilu/master
+\end{minted}
+\end{block}
+\end{frame}
+
 \newsection{Workflows}
+\begin{frame}{Branching Workflows}{\sectiontitle}
+\begin{block}{Long-Running Branches}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{lr-branches-1}
+    \caption{
+         A linear view of progressive-stability branching\footnote{
+            Pro Git: 3.4 Git Branching - Branching Workflows
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows})
+        }
+    }
+\end{figure}
+\end{block}
+\end{frame}
+
+\begin{frame}{Branching Workflows}{\sectiontitle}
+\begin{block}{Long-Running Branches}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{lr-branches-2}
+    \caption{
+         A “silo” view of progressive-stability branching\footnote{
+            Pro Git: 3.4 Git Branching - Branching Workflows
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows})
+        }
+    }
+\end{figure}
+\end{block}
+\end{frame}
+
+
+
 \newsection{Github}
 \newsection{Ressources}
 \begin{frame}{Ressources}
