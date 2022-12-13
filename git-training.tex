@@ -946,6 +946,153 @@ From github.com:iluminat23/ticgit
 \end{block}
 \end{frame}
 
+\begin{frame}[fragile]{Remote Branches}{\sectiontitle}
+\begin{itemize}
+    \item Remote references are references (pointers) in your remote repositories
+    \item Remote-tracking branches are references to the state of remote branches
+    \item Remote-tracking branch names take the form \verb|<remote>/<branch>| (e.g. \verb|origin/master|)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Remote Branches}{\sectiontitle}
+\begin{block}{Example}
+\begin{itemize}
+    \item Your git server is \verb|git.ourcompany.com|
+    \item You cloned the repo and the remote is named \verb|origin|
+    \item Development happens on the \verb|master| branch
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Remote Branches}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{remote-branches-1}
+    \caption{
+        Server and local repositories after cloning\footnote{
+            3.5 Git Branching - Remote Branches
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Remote Branches}{\sectiontitle}
+\begin{itemize}
+    \item You do some work on your local \verb|master|
+    \item Someone else does some work on the remote \verb|master|
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Remote Branches}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{remote-branches-2}
+    \caption{
+        Local and remote work can diverge\footnote{
+            3.5 Git Branching - Remote Branches
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}{Remote Branches}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{remote-branches-3}
+    \caption{
+        \texttt{git fetch} updates your remote-tracking branches\footnote{
+            3.5 Git Branching - Remote Branches
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Remote Branches}{\sectiontitle}
+\begin{itemize}
+    \item We might have a second git server: \verb|git.team1.ourcompany.com|
+    \item We add this server also as remote: \verb|teamone|
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Remote Branches}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{remote-branches-4}
+    \caption{
+        Adding another server as a remote\footnote{
+            3.5 Git Branching - Remote Branches
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}{Remote Branches}{\sectiontitle}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{remote-branches-5}
+    \caption{
+        Remote-tracking branch for \texttt{teamone/master}\footnote{
+            3.5 Git Branching - Remote Branches
+            (\url{https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches})
+        }
+    }
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Push Your Changes}{\sectiontitle}
+\begin{itemize}
+    \item Transfering your changes to a remote is called \emph{pushing}
+    \item Your local branches are not automatically pushed to the remote(s)
+    \item You need to push your local branches or tags to a remote server, where you have write access
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Push Your Changes}{\sectiontitle}
+\begin{block}{\texttt{git push <remote> <branch>}}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
+$ git push origin serverfix
+Counting objects: 24, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (24/24), 1.91 KiB | 0 bytes/s, done.
+Total 24 (delta 2), reused 0 (delta 0)
+To https://github.com/schacon/simplegit
+ * [new branch]      serverfix -> serverfix
+\end{minted}
+\begin{itemize}
+    \item This is equivalent to \\
+          \verb|git push origin serverfix:serverfix|
+    \item You can also push to a remote branch with a different name:
+          \verb|git push origin serverfix:awesomebranch|
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Tracking Branches}{\sectiontitle}
+\begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
+$ git checkout -b serverfix origin/serverfix
+Branch serverfix set up to track remote branch serverfix from origin.
+Switched to a new branch 'serverfix'
+\end{minted}
+\begin{block}{Tracking Branches}
+\begin{itemize}
+    \item Checking out a local branch from a remote-tracking branch
+          automatically creates \emph{tracking branch}
+    \item A \emph{tracking branch} tracks an \emph{upstream branch}
+    \item \verb|git checkout -b <branch> <remote>/<branch>| creates a local
+          branch from the remote branch. They point to the same commit.
+    \item The \emph{upstream branch} is read-only in the local repository
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+
 \newsection{Workflows}
 \begin{frame}{Branching Workflows}{\sectiontitle}
 \begin{block}{Long-Running Branches}
@@ -980,6 +1127,12 @@ From github.com:iluminat23/ticgit
 
 
 \newsection{Github}
+\begin{frame}{\sectiontitle}
+\begin{block}{ToDo; Or}
+Live action role play!
+\end{block}
+\end{frame}
+
 \newsection{Ressources}
 \begin{frame}{Ressources}
 \begin{itemize}
