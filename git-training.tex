@@ -12,6 +12,17 @@
 \usetheme {default}
 \setbeamertemplate{navigation symbols}{}
 
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
 \graphicspath{{images/}{\main/images/}}
 
 % Title page details
@@ -41,14 +52,16 @@
     \tableofcontents
 \end{frame}
 
-\section{What is a VCS?}
-\begin{frame}{What is a VCS?}
+\newsection{What is a Version Control System?}
+\begin{frame}{\sectiontitle}
+\begin{block}{Version Control System (VCS)}
 \begin{itemize}
     \item Tracks changes
     \item Creates a history over the changes
     \item Provides traceability
     \item Provides attribution
 \end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}{Centralized VCS}{Centralized vs. Distributed VCS}
