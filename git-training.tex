@@ -1,6 +1,6 @@
 % SPDX-License-Identifier: CC-BY-NC-SA-3.0
 
-% Copyright 2022 KUNBUS GmbH
+% Copyright 2022-2025 Philipp Rosenberger
 % With work from https://git-scm.com/book/en/v2
 
 \documentclass[aspectratio=169]{beamer}
@@ -29,7 +29,7 @@
 \title {git training\footnote{This work is licensed under a \href{http://creativecommons.org/licenses/by-nc-sa/3.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.}}}
 \subtitle{git, workflows, github}
 \author{Philipp Rosenberger}
-\institute{KUNBUS GmbH}
+\institute{Ubitium GmbH}
 %\date{\today}
 
 \renewcommand{\footnotesize}{\tiny}
@@ -38,7 +38,7 @@
 \newcommand{\newsection}[1]{\renewcommand{\sectiontitle}{#1}\section{#1}}
 
 % Image Logo
-\logo{\includegraphics[width=2.5cm]{kunbus-logo.png}} 
+\logo{\includegraphics[width=2.5cm]{cropped-simple_square_logo-300x300.png}}
 
 \begin{document}
 
@@ -107,10 +107,10 @@
 \section{How does Git work?}
 \begin{frame}[fragile]{Every thing is a Hash}{How does Git Work?}
 \begin{minted}[bgcolor=LightGray,fontsize=\small]{text}
-$ sha1sum kunbus-logo.png 
-c263869cf482a5d5d4262170ec242f8f13fc3def  kunbus-logo.png
-$ ls -sh kunbus-logo.png 
-352K kunbus-logo.png
+$ sha1sum ubitium-logo.png
+c263869cf482a5d5d4262170ec242f8f13fc3def  ubitium-logo.png
+$ ls -sh ubitium-logo.png
+352K ubitium-logo.png
 \end{minted}
 \begin{itemize}
     \item A file is an \emph{object} with a \emph{hash} and a \emph{size}
@@ -151,7 +151,7 @@ have a wrong author. And I will not accept anything from you in my repository
 or any company repository.
 \begin{minted}[bgcolor=LightGray,fontsize=\small]{text}
 $ git config --global user.name "John Doe"
-$ git config --global user.email j.doe@kunbus.com
+$ git config --global user.email j.doe@ubitium.com
 \end{minted}
 You can also configure your preferred editor and customize git behavior:
 \url{https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup}
@@ -299,7 +299,7 @@ README.md
 \begin{frame}[fragile]{Recording Changes to the Repository}{\sectiontitle}
 \begin{block}{Example: Change file and commit changes}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
-my_project$ echo -e "\nCopyright 2022 KUNBUS GmbH" >> README.md
+my_project$ echo -e "\nCopyright 2025 Ubitium GmbH" >> README.md
 my_project$ git status
 On branch master
 Changes not staged for commit:
@@ -350,13 +350,13 @@ my_project$ git commit
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ git log
 commit c16ccebd91c1a3d4b42cd575ad2912ef671ca506 (HEAD -> master)
-Author: Philipp Rosenberger <p.rosenberger@kunbus.com>
+Author: Philipp Rosenberger <philipp@ubitium.com>
 Date:   Thu Dec 8 13:15:00 2022 +0100
 
     Add copyright
 
 commit 19450627f83f4e51ad42ece86d9d2a5279bc2c23
-Author: Philipp Rosenberger <p.rosenberger@kunbus.com>
+Author: Philipp Rosenberger <philipp@ubitium.com>
 Date:   Wed Dec 7 13:15:11 2022 +0100
 
     Add initial REAMDE.md
@@ -372,17 +372,17 @@ Date:   Wed Dec 7 13:15:11 2022 +0100
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ git log --pretty=fuller 
 commit c16ccebd91c1a3d4b42cd575ad2912ef671ca506 (HEAD -> master)
-Author:     Philipp Rosenberger <p.rosenberger@kunbus.com>
+Author:     Philipp Rosenberger <philipp@ubitium.com>
 AuthorDate: Thu Dec 8 13:15:00 2022 +0100
-Commit:     Philipp Rosenberger <p.rosenberger@kunbus.com>
+Commit:     Philipp Rosenberger <philipp@ubitium.com>
 CommitDate: Thu Dec 8 14:00:34 2022 +0100
 
     Add copyright
 
 commit 19450627f83f4e51ad42ece86d9d2a5279bc2c23
-Author:     Philipp Rosenberger <p.rosenberger@kunbus.com>
+Author:     Philipp Rosenberger <philipp@ubitium.com>
 AuthorDate: Wed Dec 7 13:15:11 2022 +0100
-Commit:     Philipp Rosenberger <p.rosenberger@kunbus.com>
+Commit:     Philipp Rosenberger <philipp@ubitium.com>
 CommitDate: Thu Dec 8 14:00:29 2022 +0100
 
     Add initial REAMDE.md
@@ -397,7 +397,7 @@ CommitDate: Thu Dec 8 14:00:29 2022 +0100
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
 my_project$ git show 19450627f83f4e51ad42ece86d9d2a5279bc2c23
 commit 19450627f83f4e51ad42ece86d9d2a5279bc2c23
-Author: Philipp Rosenberger <p.rosenberger@kunbus.com>
+Author: Philipp Rosenberger <philipp@ubitium.com>
 Date:   Wed Dec 7 13:15:11 2022 +0100
 
     Add initial REAMDE.md
@@ -437,8 +437,8 @@ index 7207d0d..272997d 100644
 @@ -1,3 +1,3 @@
  # My Project
  
--Copyright 2022 KUNBUS GmbH
-+Copyright 2022 KUNBUS GmbH <support@kunbus.com>
+-Copyright 2025 Ubitium GmbH
++Copyright 2022 Ubitium GmbH <support@ubitium.com>
 my_project$ git status 
 On branch master
 Changes not staged for commit:
@@ -463,7 +463,7 @@ Changes to be committed:
 
 my_project$ git commit --amend
 >EDITOR OPENS<
-[master 0e59905] Add KUNBUS copyright notice
+[master 0e59905] Add Ubitium copyright notice
  Date: Thu Dec 8 13:15:00 2022 +0100
  1 file changed, 2 insertions(+)
 \end{minted}
@@ -475,10 +475,10 @@ my_project$ git commit --amend
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
 my_project$ git show HEAD
 commit 0e59905d83e2d075098d0ea3d0ec4c4f2b45bbfc (HEAD -> master)
-Author: Philipp Rosenberger <p.rosenberger@kunbus.com>
+Author: Philipp Rosenberger <philipp@ubitium.com>
 Date:   Thu Dec 8 13:15:00 2022 +0100
 
-    Add KUNBUS copyright notice
+    Add Ubitium copyright notice
 
 diff --git a/README.md b/README.md
 index a2beefd..272997d 100644
@@ -487,7 +487,7 @@ index a2beefd..272997d 100644
 @@ -1 +1,3 @@
  # My Project
 +
-+Copyright 2022 KUNBUS GmbH <support@kunbus.com>
++Copyright 2025 Ubitium GmbH <support@ubitium.com>
 \end{minted}
 \end{block}
 \end{frame}
@@ -497,13 +497,13 @@ index a2beefd..272997d 100644
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ git log
 commit 0e59905d83e2d075098d0ea3d0ec4c4f2b45bbfc (HEAD -> master)
-Author: Philipp Rosenberger <p.rosenberger@kunbus.com>
+Author: Philipp Rosenberger <philipp@ubitium.com>
 Date:   Thu Dec 8 13:15:00 2022 +0100
 
-    Add KUNBUS copyright notice
+    Add Ubitium copyright notice
 
 commit 19450627f83f4e51ad42ece86d9d2a5279bc2c23
-Author: Philipp Rosenberger <p.rosenberger@kunbus.com>
+Author: Philipp Rosenberger <philipp@ubitium.com>
 Date:   Wed Dec 7 13:15:11 2022 +0100
 
     Add initial REAMDE.md
