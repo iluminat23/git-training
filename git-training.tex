@@ -249,7 +249,7 @@ Resolving deltas: 100% (84532/84532), done.
 \begin{block}{Example: \ttfamily git add}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize,breaklines]{text}
 my_project$ echo "# My Project" > README.md
-my_project$ git status 
+my_project$ git status
 On branch master
 
 No commits yet
@@ -267,7 +267,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 \begin{block}{Example: \ttfamily git add}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
 my_project$ git add README.md
-my_project$ git status 
+my_project$ git status
 On branch master
 
 No commits yet
@@ -309,7 +309,7 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 my_project$ git add README.md
-my_project$ git status 
+my_project$ git status
 On branch master
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -360,7 +360,7 @@ Author: Philipp Rosenberger <philipp@ubitium.com>
 Date:   Wed Dec 7 13:15:11 2022 +0100
 
     Add initial REAMDE.md
-    
+
     Add a README.md file with just the project name as starting point
 
 \end{minted}
@@ -370,7 +370,7 @@ Date:   Wed Dec 7 13:15:11 2022 +0100
 \begin{frame}[fragile]{Viewing the Commit History}{\sectiontitle}
 \begin{block}{Example: \ttfamily git log --pretty=fuller}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{text}
-my_project$ git log --pretty=fuller 
+my_project$ git log --pretty=fuller
 commit c16ccebd91c1a3d4b42cd575ad2912ef671ca506 (HEAD -> master)
 Author:     Philipp Rosenberger <philipp@ubitium.com>
 AuthorDate: Thu Dec 8 13:15:00 2022 +0100
@@ -386,7 +386,7 @@ Commit:     Philipp Rosenberger <philipp@ubitium.com>
 CommitDate: Thu Dec 8 14:00:29 2022 +0100
 
     Add initial REAMDE.md
-    
+
     Add a README.md file with just the project name as starting point
 \end{minted}
 \end{block}
@@ -401,7 +401,7 @@ Author: Philipp Rosenberger <philipp@ubitium.com>
 Date:   Wed Dec 7 13:15:11 2022 +0100
 
     Add initial REAMDE.md
-    
+
     Add a README.md file with just the project name as starting point
 
 diff --git a/README.md b/README.md
@@ -419,7 +419,7 @@ index 0000000..a2beefd
 \begin{block}{Summary}
 \begin{itemize}
     \item List the history with \verb|git log|
-    \item The difference between author and committer 
+    \item The difference between author and committer
     \item Inspect any commit form you history (or git repo) with \verb|git show|
 \end{itemize}
 \end{block}
@@ -436,10 +436,10 @@ index 7207d0d..272997d 100644
 +++ b/README.md
 @@ -1,3 +1,3 @@
  # My Project
- 
+
 -Copyright 2025 Ubitium GmbH
 +Copyright 2022 Ubitium GmbH <support@ubitium.com>
-my_project$ git status 
+my_project$ git status
 On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -455,7 +455,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 \begin{block}{Example: Change your last commit: \texttt{git commit --amend} {\small(2)}}
 \begin{minted}[bgcolor=LightGray,fontsize=\footnotesize]{diff}
 my_project$ git add README.md
-my_project$ git status 
+my_project$ git status
 On branch master
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
@@ -507,7 +507,7 @@ Author: Philipp Rosenberger <philipp@ubitium.com>
 Date:   Wed Dec 7 13:15:11 2022 +0100
 
     Add initial REAMDE.md
-    
+
     Add a README.md file with just the project name as starting point
 \end{minted}
 \end{block}
